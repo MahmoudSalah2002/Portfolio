@@ -21,6 +21,10 @@
             padding: 0;
         }
 
+        html {
+            scroll-behavior: smooth; /* سكرول ناعم */
+        }
+
         body {
             font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
                 sans-serif;
@@ -128,6 +132,8 @@
             font-size: 0.9rem;
             cursor: pointer;
             background: transparent;
+            transition: transform 0.15s ease, box-shadow 0.15s ease,
+                border-color 0.15s ease, background 0.15s ease;
         }
 
         .btn-primary {
@@ -139,6 +145,8 @@
 
         .btn:hover {
             border-color: var(--accent);
+            transform: translateY(-1px);
+            box-shadow: 0 8px 20px rgba(15, 23, 42, 0.7);
         }
 
         .hero-tagline {
@@ -195,6 +203,14 @@
             border-radius: 16px;
             padding: 18px 16px;
             border: 1px solid rgba(30, 64, 175, 0.5);
+            opacity: 0;
+            transform: translateY(16px);
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+
+        .card.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .card + .card {
@@ -227,6 +243,33 @@
             gap: 16px;
         }
 
+        .filter-row {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 10px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 4px 10px;
+            border-radius: 999px;
+            font-size: 0.8rem;
+            border: 1px solid rgba(148, 163, 184, 0.5);
+            background: transparent;
+            color: var(--muted);
+            cursor: pointer;
+        }
+
+        .filter-btn.active {
+            background: var(--accent-soft);
+            color: var(--accent);
+            border-color: var(--accent);
+        }
+
+        .project-card {
+            display: block;
+        }
+
         footer {
             margin-top: 32px;
             padding-top: 16px;
@@ -247,6 +290,12 @@
                 grid-template-columns: minmax(0, 1fr);
             }
         }
+
+        .typing {
+            border-right: 2px solid var(--accent);
+            white-space: nowrap;
+            overflow: hidden;
+        }
     </style>
 </head>
 <body>
@@ -263,28 +312,28 @@
         </header>
 
         <main>
+            <!-- Hero -->
             <section class="hero">
                 <div>
                     <div class="hero-highlight">
                         <span></span> AI Engineer • Fresh Graduate
                     </div>
                     <h1 class="hero-title">Building smart systems with practical AI.</h1>
-                    <p class="hero-sub">
-                        I'm Mahmoud Salah Elbalat, an AI Engineer from Cairo, Egypt.
-                        I design and build machine learning solutions that turn data
-                        into useful decisions, with a special interest in automation
-                        and real-world impact.
+                    <p class="hero-sub typing" id="typing-text">
+                        I design and build machine learning solutions that turn data into useful decisions.
                     </p>
                     <div class="hero-buttons">
                         <a href="#contact" class="btn btn-primary">Contact me</a>
                         <a href="#projects" class="btn">View projects</a>
+                        <!-- زر تحميل الـ CV -->
+                        <a href="Mahmoud_Elbalat_CV.pdf" class="btn" download>Download CV</a>
                     </div>
                     <p class="hero-tagline">
                         Bachelor of Engineering, Menofia University (2025) – AI specialization.
                     </p>
                 </div>
 
-                <div class="hero-card">
+                <div class="hero-card card">
                     <h3>Current focus</h3>
                     <p class="hero-tagline" style="margin-bottom: 10px;">
                         Machine learning projects, chatbots, and smart automation.
@@ -302,6 +351,7 @@
                 </div>
             </section>
 
+            <!-- About -->
             <section id="about">
                 <h2 class="section-title"><span>About</span><br />Who I am</h2>
                 <div class="card">
@@ -314,6 +364,7 @@
                 </div>
             </section>
 
+            <!-- Skills & Education -->
             <section id="skills">
                 <h2 class="section-title"><span>Profile</span><br />Skills & Education</h2>
                 <div class="two-col">
@@ -321,7 +372,10 @@
                         <h3>Technical Skills</h3>
                         <ul>
                             <li>Programming: Python, C++, Java, SQL</li>
-                            <li>Machine Learning: Linear Regression, Decision Trees, Neural Networks, model evaluation</li>
+                            <li>
+                                Machine Learning: Linear Regression, Decision Trees,
+                                Neural Networks, model evaluation
+                            </li>
                             <li>Data processing & analysis: NumPy, Pandas</li>
                             <li>ML stack: Scikit-learn</li>
                             <li>Languages: Arabic (native), English (good)</li>
@@ -343,49 +397,87 @@
                 </div>
             </section>
 
+            <!-- Projects -->
             <section id="projects">
                 <h2 class="section-title"><span>Work</span><br />Selected Projects</h2>
 
-                <div class="card">
+                <div class="filter-row">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="ml">Machine Learning</button>
+                    <button class="filter-btn" data-filter="chatbot">Chatbots</button>
+                </div>
+
+                <div class="card project-card" data-type="ml">
                     <h3>Smart Irrigation System using Machine Learning</h3>
                     <small>Graduation Project</small>
                     <ul>
-                        <li>Designed a smart irrigation system that predicts when irrigation is needed based on environmental data.</li>
-                        <li>Features: Temperature, Soil Moisture, Soil Temperature.</li>
-                        <li>Tested models: Decision Tree, Linear Regression, Neural Network.</li>
-                        <li>Selected Linear Regression due to higher accuracy and stability.</li>
-                        <li>Can be extended to IoT integration for real-time control.</li>
+                        <li>
+                            Designed a smart irrigation system that predicts when irrigation
+                            is needed based on environmental data.
+                        </li>
+                        <li>
+                            Features: Temperature, Soil Moisture, Soil Temperature.
+                        </li>
+                        <li>
+                            Tested models: Decision Tree, Linear Regression, Neural Network.
+                        </li>
+                        <li>
+                            Selected Linear Regression due to higher accuracy and stability.
+                        </li>
+                        <li>
+                            Can be extended to IoT integration for real-time control.
+                        </li>
                     </ul>
                 </div>
 
-                <div class="card">
+                <div class="card project-card" data-type="chatbot">
                     <h3>Simple Chatbot</h3>
                     <small>Personal Project</small>
                     <ul>
-                        <li>Built a basic chatbot capable of handling simple frequently-asked questions.</li>
-                        <li>Implemented rule-based logic and experimented with ML-assisted response selection.</li>
-                        <li>Developed in Python with common NLP and data utilities.</li>
+                        <li>
+                            Built a basic chatbot capable of handling simple
+                            frequently-asked questions.
+                        </li>
+                        <li>
+                            Implemented rule-based logic and experimented with
+                            ML-assisted response selection.
+                        </li>
+                        <li>
+                            Developed in Python with common NLP and data utilities.
+                        </li>
                     </ul>
                 </div>
             </section>
 
+            <!-- Services -->
             <section id="services">
                 <h2 class="section-title"><span>Freelance</span><br />What I can do for you</h2>
                 <div class="card">
                     <ul>
-                        <li>Build and train machine learning models for prediction and classification.</li>
-                        <li>Perform data cleaning, analysis, and basic visualization.</li>
-                        <li>Develop simple chatbots for websites or internal tools.</li>
-                        <li>Assist with AI-related academic or prototype projects.</li>
+                        <li>
+                            Build and train machine learning models for prediction
+                            and classification.
+                        </li>
+                        <li>
+                            Perform data cleaning, analysis, and basic visualization.
+                        </li>
+                        <li>
+                            Develop simple chatbots for websites or internal tools.
+                        </li>
+                        <li>
+                            Assist with AI-related academic or prototype projects.
+                        </li>
                     </ul>
                 </div>
             </section>
 
+            <!-- Contact -->
             <section id="contact">
                 <h2 class="section-title"><span>Contact</span><br />Let's work together</h2>
                 <div class="card">
                     <p style="font-size: 0.93rem; color: #e5e7eb; margin-bottom: 8px;">
-                        I’m available for freelance work, collaborations, and entry-level AI/ML roles.
+                        I’m available for freelance work, collaborations, and entry-level
+                        AI/ML roles.
                     </p>
                     <p style="font-size: 0.9rem; color: #e5e7eb;">
                         📍 Cairo, Egypt<br />
@@ -405,7 +497,74 @@
     </div>
 
     <script>
+        // سنة ديناميكية في الفوتر
         document.getElementById("year").textContent = new Date().getFullYear();
+
+        // أنيميشين كتابة بسيطة في الهيرو
+        const typingEl = document.getElementById("typing-text");
+        const phrases = [
+            "I design and build machine learning solutions.",
+            "I turn data into useful decisions.",
+            "I enjoy creating smart, practical AI systems."
+        ];
+        let phraseIndex = 0;
+        let charIndex = 0;
+        let deleting = false;
+
+        function typeLoop() {
+            const current = phrases[phraseIndex];
+            if (!deleting) {
+                charIndex++;
+                if (charIndex === current.length + 3) {
+                    deleting = true;
+                }
+            } else {
+                charIndex--;
+                if (charIndex === 0) {
+                    deleting = false;
+                    phraseIndex = (phraseIndex + 1) % phrases.length;
+                }
+            }
+            typingEl.textContent = current.slice(0, charIndex);
+            setTimeout(typeLoop, deleting ? 60 : 90);
+        }
+        typeLoop();
+
+        // إظهار الكروت مع Scroll (Intersection Observer)
+        const cards = document.querySelectorAll(".card");
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("visible");
+                    }
+                });
+            },
+            { threshold: 0.1 }
+        );
+        cards.forEach((card) => observer.observe(card));
+
+        // فلترة المشاريع
+        const filterButtons = document.querySelectorAll(".filter-btn");
+        const projectCards = document.querySelectorAll(".project-card");
+
+        filterButtons.forEach((btn) => {
+            btn.addEventListener("click", () => {
+                filterButtons.forEach((b) => b.classList.remove("active"));
+                btn.classList.add("active");
+
+                const filter = btn.getAttribute("data-filter");
+
+                projectCards.forEach((card) => {
+                    const type = card.getAttribute("data-type");
+                    if (filter === "all" || filter === type) {
+                        card.style.display = "block";
+                    } else {
+                        card.style.display = "none";
+                    }
+                });
+            });
+        });
     </script>
 </body>
 </html>
