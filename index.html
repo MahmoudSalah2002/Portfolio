@@ -38,6 +38,8 @@
             text-decoration: none;
         }
 
+        .project-links { margin-top: 14px; }
+
         .wrapper {
             max-width: 960px;
             margin: 0 auto;
@@ -320,7 +322,7 @@
                     </div>
                     <h1 class="hero-title">Building smart systems with practical AI.</h1>
                     <p class="hero-sub typing" id="typing-text">
-                        I design and build machine learning solutions that turn data into useful decisions.
+                        I build practical AI solutions with a focus on machine learning and computer vision.
                     </p>
                     <div class="hero-buttons">
                         
@@ -337,17 +339,19 @@
                 <div class="hero-card card">
                     <h3>Current focus</h3>
                     <p class="hero-tagline" style="margin-bottom: 10px;">
-                        Machine learning projects, chatbots, and smart automation.
+                        Computer vision, object detection, and practical machine-learning applications.
                     </p>
                     <div class="pill-row">
                         <div class="pill">Python</div>
                         <div class="pill">C++</div>
                         <div class="pill">Java</div>
                         <div class="pill">SQL</div>
+                        <div class="pill">YOLOv8</div>
+                        <div class="pill">OpenCV</div>
+                        <div class="pill">PyTorch</div>
                         <div class="pill">Scikit-learn</div>
                         <div class="pill">Data Analysis</div>
                         <div class="pill">Machine Learning</div>
-                        <div class="pill">Chatbots</div>
                     </div>
                 </div>
             </section>
@@ -357,10 +361,7 @@
                 <h2 class="section-title"><span>About</span><br />Who I am</h2>
                 <div class="card">
                     <p style="font-size: 0.95rem; color: #e5e7eb;">
-                        I am a fresh AI Engineer with a strong foundation in mathematics,
-                        programming, and machine learning. I enjoy turning real-world
-                        problems into data-driven solutions and continuously improving
-                        my skills through projects and self-learning.
+                        I am a Computer Engineering graduate focused on AI, machine learning, and computer vision. I have built hands-on projects involving YOLOv8 object detection, model training and evaluation, predictive modeling, and a Python chatbot. I enjoy solving practical problems and strengthening my skills through project-based learning.
                     </p>
                 </div>
             </section>
@@ -373,13 +374,11 @@
                         <h3>Technical Skills</h3>
                         <ul>
                             <li>Programming: Python, C++, Java, SQL</li>
-                            <li>
-                                Machine Learning: Linear Regression, Decision Trees,
-                                Neural Networks, model evaluation
-                            </li>
-                            <li>Data processing & analysis: NumPy, Pandas</li>
-                            <li>ML stack: Scikit-learn</li>
-                            <li>Languages: Arabic (native), English (good)</li>
+                            <li>Computer Vision: YOLOv8, object detection, image annotation, OpenCV</li>
+                            <li>Machine Learning: Linear Regression, Decision Trees, Neural Networks, model training and evaluation</li>
+                            <li>Libraries & frameworks: PyTorch, TensorFlow, Keras, scikit-learn, NumPy, Pandas, Matplotlib</li>
+                            <li>Tools: CVAT, Git, GitHub</li>
+                            <li>Languages: Arabic (native), English (B1)</li>
                         </ul>
                     </div>
                     <div class="card">
@@ -404,8 +403,32 @@
 
                 <div class="filter-row">
                     <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="cv">Computer Vision</button>
                     <button class="filter-btn" data-filter="ml">Machine Learning</button>
                     <button class="filter-btn" data-filter="chatbot">Chatbots</button>
+                </div>
+
+
+                <div class="card project-card" data-type="cv">
+                    <h3>YOLOv8 Cat &amp; Dog Object Detection</h3>
+                    <small>Computer Vision Project</small>
+                    <ul>
+                        <li>Prepared a labeled cat-and-dog dataset in YOLO format and organized the data for training and evaluation.</li>
+                        <li>Trained and evaluated a YOLOv8 object-detection model and reviewed confusion-matrix and precision–recall outputs.</li>
+                        <li>Tested predictions on sample images and webcam input.</li>
+                    </ul>
+                    <p class="project-links">
+                        <a class="btn" href="https://github.com/MahmoudSalah2002/YOLOv8-Object-Detection" target="_blank" rel="noopener noreferrer">View on GitHub ↗</a>
+                    </p>
+                </div>
+
+                <div class="card project-card" data-type="cv">
+                    <h3>Candy Detection with YOLOv8</h3>
+                    <small>Computer Vision Project</small>
+                    <ul>
+                        <li>Worked on an object-detection project covering five candy classes: BabyRuth, Butterfinger, CRUNCH, MilkyWay, and TWIX.</li>
+                        <li>Labeled images and used the dataset for object-detection training and testing.</li>
+                    </ul>
                 </div>
 
                 <div class="card project-card" data-type="ml">
@@ -455,10 +478,9 @@
                 <h2 class="section-title"><span>Freelance</span><br />What I can do for you</h2>
                 <div class="card">
                     <ul>
-                        <li>
-                            Build and train machine learning models for prediction
-                            and classification.
-                        </li>
+                        <li>Build and train machine-learning models for prediction and classification.</li>
+                        <li>Develop object-detection prototypes using YOLOv8 and OpenCV.</li>
+                        <li>Prepare and annotate image datasets for computer-vision tasks.</li>
                         <li>
                             Perform data cleaning, analysis, and basic visualization.
                         </li>
@@ -485,7 +507,9 @@
                         📧
                         <a href="mailto:mahmoudelblat2323@gmail.com">
                             mahmoudelblat2323@gmail.com
-                        </a>
+                        </a><br />
+                        🔗 <a href="https://github.com/MahmoudSalah2002" target="_blank" rel="noopener noreferrer">GitHub Profile</a><br />
+                        🌐 <a href="https://mahmoudsalah2002.github.io/Portfolio/" target="_blank" rel="noopener noreferrer">Portfolio Website</a>
                     </p>
                 </div>
             </section>
@@ -504,9 +528,9 @@
         // أنيميشين كتابة بسيطة في الهيرو
         const typingEl = document.getElementById("typing-text");
         const phrases = [
-            "I design and build machine learning solutions.",
-            "I turn data into useful decisions.",
-            "I enjoy creating smart, practical AI systems."
+            "I build practical AI and machine-learning solutions.",
+            "I develop computer-vision projects with YOLOv8 and OpenCV.",
+            "I turn data into useful, real-world applications."
         ];
         let phraseIndex = 0;
         let charIndex = 0;
@@ -569,4 +593,3 @@
     </script>
 </body>
 </html>
-
